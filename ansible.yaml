@@ -1,0 +1,11 @@
+- hosts: all
+  become: true
+  tasks: 
+     - name: delete old deployment
+       command: kubectl delete -f /home/ec2-user/deployment.yml
+     - name: delete old service
+       command: kubectl delete -f /home/ec2-user/service.yml
+     - name: create new deployment
+       command: kubectl apply -f /home/ec2-user/deployment.yml
+     - name: create new service
+       command: kubectl apply -f /home/ec2-user/service.yml
