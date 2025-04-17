@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    environment {
+        MAVEN_HOME = '/usr/share/maven'  // Or wherever Maven is installed
+    }
+    stages {
+        stage('1. Cleanup') {
+            steps {
+                deleteDir()
+            }
+        }
+
+        stage('2. Git Checkout') {
+            steps {
+                dir('DevopsProject1') {
+                    git url: 'https://github.com/sirishap03/DevOpsProject.git', branch: 'main'
+                }
+            }
+        }
+
+        stage('3. Maven Unit Test') {
+            steps {
+                dir('DevopsProject1') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('4. Maven Build') {
+            steps {
+                dir('DevopsProject1') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+
+        stage('5. Maven Integration Test') {
+            steps {
+                dir('DevopsProject1') {
+                    sh 'mvn verify'
+                }
+            }
+        }
+    }
+}
