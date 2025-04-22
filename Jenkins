@@ -1,9 +1,3 @@
-// JENKINS CI PIPELINE/
-// Purpose: The Code will be built into executable file (.jar) & pushed to Dockerhub
-// NOTE:
-//  i. Store Dockerhub, EC2 pem key credentials in Jenkins Server
-// ii. Install 'ssh agent' plugin in Jenkins
-
 pipeline {
     agent any
     // DECLARE THE VARIABLES HERE:
